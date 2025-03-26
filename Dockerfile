@@ -15,5 +15,6 @@
 FROM registry.access.redhat.com/ubi8/php-74:latest
 RUN printf "ServerName localhost\n\nListen 3000\n<VirtualHost *:3000>\n  ServerAdmin webmaster@localhost\n  DocumentRoot /var/www/html\n  <Directory /var/www/html>\n    Options Indexes FollowSymLinks\n    AllowOverride All\n    Require all granted\n</Directory>\n</VirtualHost>" > /etc/httpd/conf.d/site.conf
 COPY . /var/www/html/
+USER 10014
 EXPOSE 3000
 CMD ["httpd", "-D", "FOREGROUND"]
